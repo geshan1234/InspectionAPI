@@ -1,0 +1,29 @@
+<form>
+    <div class="mb-3">
+        <label for="inspectionType" class="form-label" *ngIf="inspection.id == 0"><b>Inspection Type </b></label>
+        <select name="inspectionType" id="inspectionType" class="form-control" [(ngModel)]="inspectionTypeId"
+        *ngIf="inspection.id == 0">
+            <option value="null" >none</option>
+            <option *ngFor="let type of inspectionTypesList$|async" [value]="type.id">{{type.inspectionName}}</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="status" class="form-label"><b>Status </b></label>
+        <select name="status" id="status" class="form-control" [(ngModel)]="status">
+            <option value="null">none</option>
+            <option *ngFor="let status of statusList$|async" [value]="status.statusOption">{{status.statusOption}}</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="comments" class="form-label"><b>comments </b></label>
+        <input name="comments" type="text" class="form-control" id="comments" [(ngModel)]="comments">
+    </div>
+
+    <div class="mb-3">
+        <button class="btn btn-primary" (click)="addInspection()" *ngIf="inspection.id == 0">Add</button>
+        <button class="btn btn-primary" (click)="updateInspection()" *ngIf="inspection.id != 0">Update</button>
+    </div>
+    
+</form>
